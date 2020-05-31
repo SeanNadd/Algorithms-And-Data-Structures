@@ -85,7 +85,7 @@ public class MyBinaryTreeTest {
         myBinaryTree.insert("L");
         myBinaryTree.insert("K");
         myBinaryTree.insert("M");
-        assertEquals("Deleting a node with one child", "J", myBinaryTree.delete("J"));
+        assertEquals("Deleting a node with one child", "K", myBinaryTree.delete("J"));
         assertEquals("Checking the two child node was deleted OK", "H", myBinaryTree.getValue("H"));
         assertEquals("Checking the two child node was deleted OK", "L", myBinaryTree.getValue("L"));
         assertEquals("Checking the two child node was deleted OK", "K", myBinaryTree.getValue("K"));
