@@ -43,11 +43,17 @@ public class CodingExcersises {
 
         System.out.println("-");
 
-        System.out.println("Counters:");
-        System.out.println(Arrays.toString(counters(5, new int[]{3, 4, 4, 6, 1, 4, 4})));
+        System.out.println("Max Counters:");
+        System.out.println(Arrays.toString(maxCounters(5, new int[]{3, 4, 4, 6, 1, 4, 4})));
 
     }
 
+    /**
+     * BinaryGap
+     * Find longest sequence of zeros in binary representation of an integer.
+     * @param N The integer
+     * @return The longest sequence of 0's surrounded by 1's
+     */
     private static int findGap(int N){
         String binary = Integer.toBinaryString(N);
         String[] gaps = binary.split("1");
@@ -58,6 +64,13 @@ public class CodingExcersises {
         return findLargestNumber(gaps, 0, gaps.length -1);
     }
 
+    /**
+     * Divide and conquer algorithm to find the largest number in an array of ints
+     * @param input The array
+     * @param leftBound The point of origin of the search (0 indexed)
+     * @param rightBound The cut-off point of the search (inclusive)
+     * @return The largest number.
+     */
     private static int findLargestNumber(String[] input, int leftBound, int rightBound){
         if(leftBound - rightBound == 1){
             return Math.max(input[leftBound].length(), input[rightBound].length());
@@ -68,6 +81,13 @@ public class CodingExcersises {
     }
 
 
+    /**
+     * CyclicRotation
+     * Rotate an array to the right by a given number of steps. (In a rotation, the last index goes to the first place.)
+     * @param A The array to rotate
+     * @param K The number of times
+     * @return The rotated array
+     */
     public static int[] cyclicRotation(int[] A, int K) {
         if (A == null || A.length == 0) return A;
         int numOfOperations = K % A.length;
@@ -84,18 +104,38 @@ public class CodingExcersises {
         return A;
     }
 
+    /**
+     * OddOccurrencesInArray
+     * Find value that occurs in odd number of elements.
+     * @param A int array with an odd number of elements.
+     * @return The value that appears only once.
+     */
     public static int oddOccurrences(int[] A) {
         int result = 0;
         for(int c : A) result ^= c;
         return result;
     }
 
+    /**
+     * FrogImp
+     * Count minimal number of jumps from position X to Y.
+     * @param X Starting position
+     * @param Y End position
+     * @param D Distance covered by each jump.
+     * @return The minimum number of jumps
+     */
     public static int frogJump(int X, int Y, int D) {
         int distance = Y - X;
         if(distance <= 0) return 0;
         return (int) Math.ceil((double) distance / D);
     }
 
+    /**
+     * PermMissingElem
+     * Find the missing element in a given permutation.
+     * @param A an array of N ints where all numbers are in the range [1..(N + 1)]
+     * @return The element that is missing in the sequence.
+     */
     public static int permMissingElement(int[] A) {
         long N = A.length + 1;
         long sum = N * (N + 1) / 2;
@@ -104,6 +144,11 @@ public class CodingExcersises {
         return (int) ((int) sum - sumN);
     }
 
+    /**
+     * Tape Equilibrium
+     * @param A non-empty array consisting on N integers. [2..100000]
+     * @return The minimum absolute difference that can be achieved by dividing the array and adding up it's parts.
+     */
     public static int tapeEquilibrium(int[] A) {
         long sumR = 0;
         long sumL = A[0];
@@ -122,6 +167,13 @@ public class CodingExcersises {
         return (int) result;
     }
 
+    /**
+     * FrogRiverOne
+     * Find the earliest time a frog located at position 0 can reach position X + 1 jumping through leafs that fall at different times.
+     * @param X The last position that needs to be covered with a leaf so the path is complete.
+     * @param A array consisting of N integers representing the falling leaves. A[K] represents the position where one leaf falls at time K, measured in seconds.
+     * @return The earliest moment (in seconds) that the frog can make the jump.
+     */
     private static int frogJump(int X, int[] A) {
         int[] count = new int[X];
         int posTracker = 0;
@@ -135,7 +187,15 @@ public class CodingExcersises {
         return -1;
     }
 
-    private static int[] counters(int N, int[] A){
+    /**
+     * MaxCounters
+     * Calculate the values of counters after applying all alternating operations: increase counter by 1; set value of all counters to current maximum.
+     * @param N The number of counters to maintain
+     * @param A The number of operations to do on those counters (if A[K] = X, such that 1 ≤ X ≤ N, then operation K is increase(X), if A[K] = N + 1 then operation K is max counter.)
+     * @return The resulting array after of counters after performing all the calculations.
+     * Time complexity O(N + M) -- M = number of elements in A.
+     */
+    private static int[] maxCounters(int N, int[] A){
         int[] result = new int[N];
         int maxValueTmp = 0;
         int maxValue = 0;
